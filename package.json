@@ -1,0 +1,16 @@
+{
+  "name": "web322-app",
+  "version": "1.0.0",
+  "description": "eCommerce",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Jaimil Vaghela",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "node": "^20.18.0"
+  }
+}
