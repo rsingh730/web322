@@ -6,8 +6,8 @@ No part of this assignment has been copied manually or electronically from any o
 Name:Ranjot Singh
 Student ID: 129254231
 Date: 13-10-2024
-Vercel Web App URL: https://web322-kappa.vercel.app/
-GitHub Repository URL: https://github.com/rsingh730/web322.git
+Vercel Web App URL:web322-two.vercel.app
+GitHub Repository URL:https://github.com/rsingh730/web322.git
 
 ********************************************************************************/ 
 
