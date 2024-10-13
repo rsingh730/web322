@@ -7,7 +7,7 @@ Name:Ranjot Singh
 Student ID: 129254231
 Date: 13-10-2024
 Vercel Web App URL: https://web322-kappa.vercel.app/
-GitHub Repository URL: https://github.com/jsvaghela1/web322.git
+GitHub Repository URL: https://github.com/rsingh730/web322.git
 
 ********************************************************************************/ 
 
