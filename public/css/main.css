@@ -1,7 +1,36 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Changed font family */
     padding-top: 50px;
+    background-color: #f8f9fa; /* Light background color */
+    color: #343a40; /* Dark text color */
 }
+
 h2 {
-    color: #007bff;
+    color: #007bff; /* Primary color for headings */
+    font-family: 'Georgia', serif; /* Different font for h2 */
+    font-weight: bold; /* Bold heading */
+}
+
+p {
+    line-height: 1.6; /* Increased line height for readability */
+    margin-bottom: 15px; /* Space between paragraphs */
+}
+
+.navbar {
+    background-color: #343a40; /* Dark background for navbar */
+}
+
+.nav-link {
+    color: #ffffff !important; /* White text for navbar links */
+}
+
+.nav-link:hover {
+    color: #ffc107 !important; /* Yellow color on hover */
+}
+
+footer {
+    background-color: #007bff; /* Primary color for footer */
+    color: #ffffff; /* White text in footer */
+    padding: 20px;
+    text-align: center;
 }
