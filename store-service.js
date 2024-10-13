@@ -1,3 +1,15 @@
+/*********************************************************************************
+WEB322 – Assignment 02
+I declare that this assignment is my own work in accordance with Seneca Academic Policy.  
+No part of this assignment has been copied manually or electronically from any other source (including 3rd party web sites) or distributed to other students.
+
+Name:Ranjot Singh
+Student ID: 129254231
+Date: 13-10-2024
+Vercel Web App URL: https://web322-kappa.vercel.app/
+GitHub Repository URL: https://github.com/jsvaghela1/web322.git
+
+********************************************************************************/ 
 const file = require('fs');
 var items = [];
 var categories = [];

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jaimil Vaghela",
+  "author": "Ranjot Singh",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0",

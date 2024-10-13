@@ -3,9 +3,9 @@ WEB322 – Assignment 02
 I declare that this assignment is my own work in accordance with Seneca Academic Policy.  
 No part of this assignment has been copied manually or electronically from any other source (including 3rd party web sites) or distributed to other students.
 
-Name: Jaimil Vaghela
-Student ID: 123128233
-Date: 09-10-2024
+Name:Ranjot Singh
+Student ID: 129254231
+Date: 13-10-2024
 Vercel Web App URL: https://web322-kappa.vercel.app/
 GitHub Repository URL: https://github.com/jsvaghela1/web322.git
 
@@ -14,7 +14,7 @@ GitHub Repository URL: https://github.com/jsvaghela1/web322.git
 const express = require('express'); // "require" the Express module
 const app = express(); // obtain the "app" object
 const HTTP_PORT = process.env.PORT || 8080; // assign a port
-const path = require('path'); // adding the path 
+const path = require('path'); // adding the path 69=
 const dataserver = require(__dirname +'/store-service.js');
 app.use(express.static('public'));
 
