@@ -10,6 +10,7 @@ Vercel Web App URL: https://web322-kappa.vercel.app/
 GitHub Repository URL: https://github.com/rsingh730/web322.git
 
 ********************************************************************************/
+
 const file = require('fs');
 var items = [];
 var categories = [];
@@ -88,6 +89,7 @@ exports.getItemsByMinDate = (minDateStr) => {
     });
 };
 
+// Function to retrieve an item by its ID
 exports.getItemById = (id) => {
     return new Promise((resolve, reject) => {
         const item = items.find(item => item.id == id);
@@ -99,9 +101,27 @@ exports.getItemById = (id) => {
     });
 };
 
-// New function to add an item (assuming this is missing in your original)
+// New function to get published items by category
+exports.getPublishedItemsByCategory = (category) => {
+    return new Promise((resolve, reject) => {
+        const publishedItems = items.filter(item => item.published === true && item.category === category);
+        if (publishedItems.length > 0) {
+            resolve(publishedItems);
+        } else {
+            reject('No items found for this category');
+        }
+    });
+};
+
+// New function to add an item
 exports.addItem = (itemData) => {
     return new Promise((resolve, reject) => {
+        // Get the current date in YYYY-MM-DD format
+        const currentDate = new Date().toISOString().split('T')[0]; // Example: "2024-11-17"
+
+        // Add the itemDate to the new item
+        itemData.itemDate = currentDate;
+
         itemData.id = items.length + 1; // Assign a new ID
         items.push(itemData); // Add item to array
         // Here you should ideally write the updated items back to the file

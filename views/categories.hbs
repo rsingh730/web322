@@ -1,0 +1,27 @@
+<div class="col-md-12 table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Category ID</th>
+        <th>Category Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each categories}}
+        <tr>
+          <!-- Category ID link -->
+          <td><a href="/items?category={{this.categoryId}}">{{this.categoryId}}</a></td>
+          <!-- Category Name link -->
+          <td><a href="/items?category={{this.categoryId}}">{{this.categoryName}}</a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<!-- Display message if there are no categories -->
+{{#unless categories}}
+  <div class="col-md-12 text-center">
+    <strong>{{message}}</strong>
+  </div>
+{{/unless}}

@@ -1,0 +1,45 @@
+<!-- views/shop.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - {{item.title}}</title>
+</head>
+<body>
+    <div class="container">
+        <h2>{{item.title}}</h2>
+        <img src="{{item.featureImage}}" alt="{{item.title}}">
+        <p>{{#safeHTML item.body}}{{/safeHTML}}</p>
+        <p>Category: {{item.category}}</p>
+        <p>Price: ${{item.price}}</p>
+        <p>Last Updated: {{item.itemate}}</p>
+
+        <h4>Items</h4>
+        {{#if items}}
+            <ul>
+                {{#each items}}
+                    <li>
+                        <a href="/shop/{{this.id}}?category={{../viewingCategory}}">{{this.title}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>No items available.</p>
+        {{/if}}
+
+        <h4>Categories</h4>
+        {{#if categories}}
+            <ul>
+                {{#each categories}}
+                    <li>
+                        <a href="/shop?category={{this.id}}">{{this.name}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>No categories available.</p>
+        {{/if}}
+    </div>
+</body>
+</html>
