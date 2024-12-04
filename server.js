@@ -19,12 +19,17 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 const stripJs = require('strip-js'); // Import strip-js for safe HTML rendering
+const moment = require('moment'); // Import moment.js for date formatting
 
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Configure Handlebars view engine with custom helpers
 const hbsHelpers = {
+  // Custom helper to format dates
+  formatDate: function (date, format) {
+    return moment(date).format(format);  // Use moment.js to format the date
+  },
   navLink: function (url, options) {
     return `<li class="nav-item">
       <a class="nav-link${url == app.locals.activeRoute ? " active" : ""}" href="${url}">${options.fn(this)}</a>
@@ -130,6 +135,34 @@ app.get("/categories", (req, res) => {
     });
 });
 
+// New Route for Adding a Category (GET)
+app.get('/categories/add', (req, res) => {
+  res.render('addCategory');  // Render the form to add a new category
+});
+
+// New Route for Adding a Category (POST)
+app.post('/categories/add', (req, res) => {
+  dataserver.addCategory(req.body)
+    .then(() => {
+      res.redirect('/categories');  // Redirect to the categories page after adding
+    })
+    .catch((error) => {
+      res.status(500).send('Error adding category: ' + error);
+    });
+});
+
+// New Route for Deleting a Category (GET)
+app.get('/categories/delete/:id', (req, res) => {
+  const categoryId = req.params.id;
+  dataserver.deleteCategoryById(categoryId)
+    .then(() => {
+      res.redirect('/categories');  // Redirect to the categories page after deletion
+    })
+    .catch((error) => {
+      res.status(500).send('Error deleting category: ' + error);
+    });
+});
+
 app.get('/items', (req, res) => {
   const category = req.query.category;
 
@@ -152,8 +185,15 @@ app.get('/items', (req, res) => {
   }
 });
 
+// Route to add a new item
 app.get('/items/add', (req, res) => {
-  res.render('addItem');
+  dataserver.getAllCategories()  // Fetch all categories to populate the dropdown
+    .then((categories) => {
+      res.render('addItem', { categories: categories });  // Pass categories to the addItem view
+    })
+    .catch((err) => {
+      res.status(500).send("Error retrieving categories: " + err);
+    });
 });
 
 app.post("/items/add", upload.single("featureImage"), (req, res) => {
@@ -201,44 +241,16 @@ app.post("/items/add", upload.single("featureImage"), (req, res) => {
   }
 });
 
-// New route for displaying a specific item by ID
-const itemData = require('./store-service'); // Assuming itemData is your store-service module
-
-app.get('/shop/:id', (req, res) => {
+// New Route for Deleting an Item (GET)
+app.get('/items/delete/:id', (req, res) => {
   const itemId = req.params.id;
-  
-  // Retrieve the item with the specified ID
-  itemData.getItemById(itemId)
-    .then((item) => {
-      if (item) {
-        // If the item exists, render the item view (shop.hbs)
-        res.render('shop', {
-          item: item, // Pass the item to the view
-          items: itemData.getPublishedItems(), // Pass other items to show in the sidebar
-          categories: itemData.getCategories(), // Pass categories for the sidebar
-          message: '', // Empty message for no errors
-          categoriesMessage: '' // Empty message for categories
-        });
-      } else {
-        // If no item is found, render the 404 page
-        res.status(404).render('404', {
-          message: 'Item not found'
-        });
-      }
+  dataserver.deleteItemById(itemId)
+    .then(() => {
+      res.redirect('/items');  // Redirect to the items page after deletion
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).render('404', {
-        message: 'Error retrieving item'
-      });
+    .catch((error) => {
+      res.status(500).send('Error deleting item: ' + error);
     });
-});
-
-// 404 Error handling (Catch-all route for non-existing routes)
-app.use((req, res, next) => {
-  res.status(404).render('404', {
-    message: 'The page you are looking for does not exist.'
-  });
 });
 
 // Initialize server

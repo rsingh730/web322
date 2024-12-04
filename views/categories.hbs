@@ -1,27 +1,39 @@
-<div class="col-md-12 table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Category ID</th>
-        <th>Category Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each categories}}
-        <tr>
-          <!-- Category ID link -->
-          <td><a href="/items?category={{this.categoryId}}">{{this.categoryId}}</a></td>
-          <!-- Category Name link -->
-          <td><a href="/items?category={{this.categoryId}}">{{this.categoryName}}</a></td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+<div class="col-md-12">
+    <h2>Categories</h2>
+    <hr />
+
+    <!-- Add Category button -->
+    <a href="/categories/add" class="btn btn-success pull-right">Add Category</a>
+
+    <!-- Display the table of categories -->
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Action</th>  <!-- Add Action Column for Delete Button -->
+                </tr>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                    <tr>
+                        <td>{{this.id}}</td>
+                        <td>{{this.category}}</td>
+                        <td>
+                            <!-- Delete button for each category -->
+                            <a href="/categories/delete/{{this.id}}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Display message if there are no categories -->
 {{#unless categories}}
-  <div class="col-md-12 text-center">
-    <strong>{{message}}</strong>
-  </div>
+    <div class="col-md-12 text-center">
+        <strong>{{message}}</strong>
+    </div>
 {{/unless}}

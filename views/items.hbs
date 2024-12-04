@@ -2,6 +2,10 @@
     <div class="col-md-12">
         <h2>Items</h2>
         <hr />
+
+        <!-- Add Item button -->
+        <a href="/Items/add" class="btn btn-success pull-right">Add Item</a>
+
         <!-- Display the table of items -->
         <div class="table-responsive">
             <table class="table">
@@ -20,10 +24,10 @@
                         <tr>
                             <td>{{id}}</td>
                             <td>{{title}}</td>
-                            <td>{{itemDate}}</td>
+                            <td>{{formatDate itemDate}}</td> <!-- Formatting date -->
                             <td>{{price}}</td>
                             <td><a href="/items?category={{category}}">{{category}}</a></td>
-                            <td>{{published}}</td>
+                            <td>{{#if published}}Yes{{else}}No{{/if}}</td> <!-- Show Yes/No for published -->
                         </tr>
                     {{/each}}
                 </tbody>
